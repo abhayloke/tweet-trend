@@ -1,7 +1,7 @@
 def registry = 'https://abhay1004.jfrog.io'
-def imageName = 'valaxy05.jfrog.io/valaxy-docker-local/ttrend'
+def imageName = 'abhay1004.jfrog.io/valaxy-docker-local/ttrend'
 def version   = '2.1.4'
-pipeline {
+pipeline {  
     agent {
         node {
             label 'maven'
@@ -88,7 +88,7 @@ environment {
         steps {
             script {
                echo '<--------------- Docker Publish Started --------------->'  
-                docker.withRegistry(registry, 'artfiact-cred'){
+                docker.withRegistry(registry, 'Jfrog'){
                     app.push()
                 }    
                echo '<--------------- Docker Publish Ended --------------->'  
@@ -105,5 +105,5 @@ stage(" Deploy ") {
          }
        }
      }  
-}
+  }
 }
