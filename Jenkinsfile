@@ -1,4 +1,4 @@
-def registry = 'https://valaxy05.jfrog.io'
+def registry = 'https://abhay1004.jfrog.io'
 def imageName = 'valaxy05.jfrog.io/valaxy-docker-local/ttrend'
 def version   = '2.1.4'
 pipeline {
@@ -9,7 +9,7 @@ pipeline {
     }
 environment {
     PATH = "/opt/apache-maven-3.9.6/bin:$PATH"
-}
+}   
     stages {
         stage("build"){
             steps {
@@ -29,7 +29,6 @@ environment {
     stage('SonarQube analysis') {
     environment {
       scannerHome = tool 'valaxy-sonar-scanner'
-    }
     steps{
     withSonarQubeEnv('valaxy-sonarqube-server') { // If you have configured more than one global server connection, you can specify its name
       sh "${scannerHome}/bin/sonar-scanner"
@@ -49,10 +48,10 @@ environment {
     }
   }
          stage("Jar Publish") {
-        steps {
+        steps {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
             script {
                     echo '<--------------- Jar Publish Started --------------->'
-                     def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"artfiact-cred"
+                     def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"Jfrog"
                      def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                      def uploadSpec = """{
                           "files": [
