@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo "----------- build started ----------"
                 sh 'mvn clean deploy -Dmaven.test.skip=true'
-                 echo "----------- build completed ----------"
+                echo "----------- build completed ----------"
             }
         }
         stage("test") {
@@ -26,7 +26,8 @@ pipeline {
                 echo "----------- unit test completed ----------"
             }
         }
-        //stage('SonarQube analysis') {
+        /* Commented out SonarQube analysis stage
+        stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'valaxy-sonar-scanner'
             }
@@ -36,7 +37,9 @@ pipeline {
                 }
             }
         }
-        //stage("Quality Gate") {
+        */
+        /* Commented out Quality Gate stage
+        stage("Quality Gate") {
             steps {
                 script {
                     timeout(time: 1, unit: 'HOURS') {
@@ -48,6 +51,7 @@ pipeline {
                 }
             }
         }
+        */
         stage("Jar Publish") {
             steps {
                 script {
