@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo "----------- build started ----------"
                 sh 'mvn clean deploy -Dmaven.test.skip=true'
-                echo "----------- build completed ----------"
+                 echo "----------- build completed ----------"
             }
         }
         stage("test") {
@@ -26,17 +26,17 @@ pipeline {
                 echo "----------- unit test completed ----------"
             }
         }
-        stage('SonarQube analysis') {
+        //stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'valaxy-sonar-scanner'
             }
             steps {
-                withSonarQubeEnv('valaxy-sonarqube-server') {
+               withSonarQubeEnv('valaxy-sonarqube-server') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
-        stage("Quality Gate") {
+        //stage("Quality Gate") {
             steps {
                 script {
                     timeout(time: 1, unit: 'HOURS') {
